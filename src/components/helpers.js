@@ -33,6 +33,7 @@ const createArray = (data) => {
       const monthArray = yearArray.filter((obj) => obj.Month === k);
       if (monthArray.length === 2) {
         finalArray.push({
+          id: `${months[k]}-${i}`,
           year: i,
           month: months[k],
           initialValue: monthArray[0].Value,
@@ -41,6 +42,7 @@ const createArray = (data) => {
         });
       } else if (monthArray.length === 1) {
         finalArray.push({
+          id: `${months[k]}-${i}`,
           year: i,
           month: months[k],
           initialValue: monthArray[0].Value,

@@ -12,10 +12,11 @@ const TableList = ({ dates }) => {
   }
   const renderedList = years.map((year) => {
     const data = dates.filter((x) => x.year === year);
+    //  const uuid = uuidv4();
     return (
-      <div className="thirteen column row">
+      <div key={year} className="thirteen column row">
         <div className="column">{year}</div>
-        {data.map((item) => <RowItem data={item} />)}
+        {data.map((item) => <RowItem key={item.id} data={item} />)}
       </div>
     );
   });
@@ -27,7 +28,7 @@ const TableList = ({ dates }) => {
         paddingTop: '3rem',
       }}
     >
-      <div className="thirteen column row">
+      <div key="header" className="thirteen column row">
         <div className="column" />
         <div className="column">January</div>
         <div className="column">February</div>
