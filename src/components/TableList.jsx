@@ -1,22 +1,26 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import RowItem from './RowItem';
+import { createArray } from './helpers';
 
-const TableList = ({ dates }) => {
-  if (dates.length === 0) {
+const TableList = ({ data }) => {
+  if (data.length === 0) {
     return null;
   }
+  const modifiedData = createArray(data);
+  // console.log(modifiedData);
+
   const years = [];
   for (let k = 2011; k <= new Date().getFullYear(); k += 1) {
     years.push(k);
   }
   const renderedList = years.map((year) => {
-    const data = dates.filter((x) => x.year === year);
-    //  const uuid = uuidv4();
+    const dataByYear = modifiedData.filter((x) => x.year === year);
+
     return (
       <div key={year} className="thirteen column row">
         <div className="column">{year}</div>
-        {data.map((item) => <RowItem key={item.id} data={item} />)}
+        {dataByYear.map((item) => <RowItem key={item.id} data={item} />)}
       </div>
     );
   });

@@ -1,49 +1,55 @@
-import React from 'react';
-/* import SearchBar from './SearchBar'; */
+import React, { useState, useEffect } from 'react';
 import coindesk from '../apis/coindesk';
 import TableList from './TableList';
-import { createArray } from './helpers';
+// import SelectBar from './SelectBar';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { prices: [] };
-  }
+const App = () => {
+  const [data, setData] = useState({ prices: [] });
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
-  componentDidMount() {
-    coindesk.get('/close.json').then((response) => {
-      this.setState({
-        prices: createArray(response.data.bpi),
-      });
-    });
-  }
+  useEffect(() => {
+    const fetchData = async () => {
+      setIsError(false);
+      setIsLoading(true);
 
-  /*  onTermSubmit = async term => {
-      const response = await coindesk.get('/close.json');
-      console.log(response.data.bpi);
-      this.setState({
-          prices: createArray(response.data.bpi)
-      });
-      console.log(this.state.prices);
-  }; */
+      try {
+        const result = await coindesk.get('/close.json');
 
-  render() {
-    const { prices } = this.state;
-    return (
-      <div className="ui container">
-        <h1
-          className="ui center aligned huge header"
-          style={{
-            marginTop: '3rem',
-          }}
-        >
-          Change bitcoin price as a percentage by months
-        </h1>
-        {/* <SearchBar onFormSubmit={this.onTermSubmit} /> */}
-        <TableList dates={prices} />
-      </div>
-    );
-  }
-}
+        setData(result.data.bpi);
+      } catch (error) {
+        setIsError(true);
+      }
+
+      setIsLoading(false);
+    };
+
+    fetchData();
+  }, []);
+
+  return (
+    <div className="ui container">
+      <h1
+        className="ui center aligned huge header"
+        style={{
+          marginTop: '3rem',
+        }}
+      >
+        Change bitcoin price as a percentage by months
+      </h1>
+
+      {isError && <div>Something went wrong...</div>}
+
+      {isLoading ? (
+        <div>Loading...</div>
+      ) : (
+        <>
+          {/* <SelectBar data={data} /> */}
+          <TableList data={data} />
+        </>
+      )}
+    </div>
+  );
+};
 
 export default App;

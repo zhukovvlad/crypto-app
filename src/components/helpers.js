@@ -25,7 +25,6 @@ const createArray = (data) => {
     ),
   );
 
-  const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
   const finalArray = [];
   for (let i = 2011; i <= new Date().getFullYear(); i += 1) {
     const yearArray = arr.filter((obj) => obj.Year === i);
@@ -33,18 +32,18 @@ const createArray = (data) => {
       const monthArray = yearArray.filter((obj) => obj.Month === k);
       if (monthArray.length === 2) {
         finalArray.push({
-          id: `${months[k]}-${i}`,
+          id: `${k}-${i}`,
           year: i,
-          month: months[k],
+          month: k,
           initialValue: monthArray[0].Value,
           finalValue: monthArray[1].Value,
           change: +((monthArray[1].Value / monthArray[0].Value - 1) * 100).toFixed(2),
         });
       } else if (monthArray.length === 1) {
         finalArray.push({
-          id: `${months[k]}-${i}`,
+          id: `${k}-${i}`,
           year: i,
-          month: months[k],
+          month: k,
           initialValue: monthArray[0].Value,
           finalValue: data[`${new Date().getFullYear()}-${Month()}-${DayBefore()}`],
           change: +((data[`${new Date().getFullYear()}-${Month()}-${DayBefore()}`] / monthArray[0].Value - 1) * 100).toFixed(2),
