@@ -1,0 +1,13 @@
+.common {
+  border: 1px solid #1b1c1d;
+  padding-top: 0.1rem;
+  padding-bottom: 0.1rem;
+}
+
+.red-cell {
+  background-color: #f2711c;
+}
+
+.green-cell {
+  background-color: #92d36e;
+}

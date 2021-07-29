@@ -28,7 +28,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className="ui container">
+    <main className="ui container">
       <h1
         className="ui center aligned huge header"
         style={{
@@ -48,7 +48,7 @@ const App = () => {
           <TableList data={data} />
         </>
       )}
-    </div>
+    </main>
   );
 };
 
