@@ -35,7 +35,7 @@ const App = () => {
           marginTop: '3rem',
         }}
       >
-        Change bitcoin price as a percentage by months
+        Bitcoin monthly returns
       </h1>
 
       {isError && <div>Something went wrong...</div>}
