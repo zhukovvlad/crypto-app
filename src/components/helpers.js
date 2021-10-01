@@ -57,7 +57,7 @@ const createArray = (data) => {
 const Month = () => {
   const date = new Date();
 
-  if (date.getMonth() + 1 < 10) {
+  if (date.getMonth() + 1 <= 10) {
     const fullMonth = `0${(date.getMonth() + 1).toString()}`;
     return fullMonth;
   }
