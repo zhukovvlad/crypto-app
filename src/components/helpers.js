@@ -57,12 +57,12 @@ const createArray = (data) => {
 const Month = () => {
   const date = new Date();
 
-  if ((date.getMonth()+1).toString().length === 1) {
+  if ((date.getMonth() + 1).toString().length === 1) {
     const fullMonth = `0${(date.getMonth() + 1).toString()}`;
     return fullMonth;
   }
 
-  return (date.getMonth()+1).toString();
+  return (date.getMonth() + 1).toString();
 };
 
 const Day = () => {
